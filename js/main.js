@@ -1,6 +1,7 @@
 const allData = JSON.parse(data).data;
 const doneList = document.querySelector(".doneList");
 const milestonesList = document.querySelector(".milestones");
+let arrowUpdown;
 
 function loadMileStone() {
   const mileStones = document.querySelector(".milestones");
@@ -38,6 +39,7 @@ function openMileStone(mileStoneElement, id) {
   const currentElement = mileStoneElement.parentNode.nextElementSibling;
   const shownElement = document.querySelector(".show");
   const activeElement = document.querySelector(".active");
+  arrowUpdown = mileStoneElement.children[0].children[0].children[0].classList;
 
   if (activeElement && !mileStoneElement.classList.contains("active")) {
     activeElement.classList.remove("active");
@@ -47,9 +49,16 @@ function openMileStone(mileStoneElement, id) {
 
   if (!currentElement.classList.contains("show") && shownElement) {
     shownElement.classList.remove("show");
+
+    let arrowUp = document.querySelector(".fa-chevron-up");
+    arrowUp.classList.remove("fa-chevron-up");
+    arrowUp.classList.add("fa-chevron-down");
   }
 
   currentElement.classList.toggle("show");
+
+  arrowUpdown.toggle("fa-chevron-down");
+  arrowUpdown.toggle("fa-chevron-up");
 
   showImage(id);
 }
